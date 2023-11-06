@@ -1,0 +1,25 @@
+prestataire
+-> CVD
+	-> Chiffres
+		-> Ecriture douteuse
+			
+Annexe13
+/!\ Nomenclature
+	-> 903(non) >
+	inami prgramme web -> pdf -> 
+	INCO (6 chiffres) -> Top list
+	
+/!\ INCO : Conveen 62042 -> 109 -> 1 seule boite et pas 2 
+
+
+/!\ facturation par prestataire
+/!\ Document par mutuelle, détaillé par prestataire
+
+/!\ codes nomenclature vides
+/!\ 2X meme date de livraison 
+
+
+relevés années précendetes
+-> NISS manquants
+-> Date de livraison manquants
+

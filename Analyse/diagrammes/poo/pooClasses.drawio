@@ -1,0 +1,70 @@
+<mxfile host="app.diagrams.net" modified="2023-10-27T08:47:45.682Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/119.0" etag="l7CHvssHhDEtlZ0kkwIK" version="22.0.8" type="device">
+  <diagram name="Page-1" id="ecUv9d_RSjCKizcaHwjk">
+    <mxGraphModel dx="3033" dy="2372" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="IlugJNg5No-f-RM8x2Am-1" value="&lt;b&gt;Class File&lt;br&gt;&lt;/b&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="240" y="200" width="80" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="IlugJNg5No-f-RM8x2Am-5" value="&lt;div&gt;&lt;b&gt;Child&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Class FileA&lt;/b&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="80" y="-40" width="80" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="IlugJNg5No-f-RM8x2Am-6" value="&lt;div&gt;&lt;b&gt;Child&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Class FileB&lt;br&gt;&lt;/b&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="400" y="-40" width="80" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="IlugJNg5No-f-RM8x2Am-12" value="&lt;h1&gt;Relevés Navision&lt;br&gt;&lt;/h1&gt;&lt;ol&gt;&lt;li&gt;&amp;nbsp;Création&lt;/li&gt;&lt;li&gt;Formalisation &lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-160" y="-40" width="240" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="IlugJNg5No-f-RM8x2Am-13" value="&lt;h1&gt;Retour OT&lt;br&gt;&lt;/h1&gt;&lt;ol&gt;&lt;li&gt;&amp;nbsp;Création&lt;/li&gt;&lt;li&gt;Formalisation &lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="520" y="-40" width="240" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="IlugJNg5No-f-RM8x2Am-14" value="&lt;h1&gt;Main&lt;br&gt;&lt;/h1&gt;&lt;div&gt;&lt;ol&gt;&lt;li&gt;Importer les librairies&lt;/li&gt;&lt;li&gt;Définitions des fonctions&lt;/li&gt;&lt;li&gt;Affichage Graphique&lt;/li&gt;&lt;li&gt;définitions des objets&lt;br&gt;&lt;/li&gt;&lt;li&gt;Sélection des fichiers&lt;/li&gt;&lt;li&gt;Formalisation&lt;/li&gt;&lt;li&gt;Comparaison&lt;/li&gt;&lt;li&gt;Génération d&#39;un fichier&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;align=left;" vertex="1" parent="1">
+          <mxGeometry x="-240" y="200" width="240" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="IlugJNg5No-f-RM8x2Am-15" value="&lt;b&gt;Main&lt;/b&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="-40" y="200" width="80" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="IlugJNg5No-f-RM8x2Am-17" value="&lt;div&gt;&lt;b&gt;Class Child FileResults&lt;/b&gt;&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="240" y="440" width="80" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="IlugJNg5No-f-RM8x2Am-19" value="&lt;h1&gt;Résultats&lt;br&gt;&lt;/h1&gt;&lt;ol&gt;&lt;li&gt;&amp;nbsp;Création&lt;/li&gt;&lt;/ol&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="360" y="440" width="240" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="IlugJNg5No-f-RM8x2Am-30" value="&lt;h1&gt;Fichier&lt;br&gt;&lt;/h1&gt;&lt;ol&gt;&lt;li&gt;Création&lt;/li&gt;&lt;li&gt;Sélection&lt;br&gt;&lt;/li&gt;&lt;li&gt;Notification Erreur&lt;br&gt;&lt;/li&gt;&lt;li&gt;Affichage graphique&lt;/li&gt;&lt;li&gt;Comparaison entre 2 fichiers&lt;/li&gt;&lt;li&gt;Exportation&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="360" y="200" width="240" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="IlugJNg5No-f-RM8x2Am-32" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=2;startArrow=classic;startFill=1;" edge="1" parent="1" source="IlugJNg5No-f-RM8x2Am-1" target="IlugJNg5No-f-RM8x2Am-17">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="270" y="420" as="sourcePoint" />
+            <mxPoint x="320" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IlugJNg5No-f-RM8x2Am-33" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;strokeWidth=2;" edge="1" parent="1" source="IlugJNg5No-f-RM8x2Am-1" target="IlugJNg5No-f-RM8x2Am-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="210" y="260" as="sourcePoint" />
+            <mxPoint x="260" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IlugJNg5No-f-RM8x2Am-34" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;strokeWidth=2;" edge="1" parent="1" source="IlugJNg5No-f-RM8x2Am-5" target="IlugJNg5No-f-RM8x2Am-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="210" y="260" as="sourcePoint" />
+            <mxPoint x="260" y="210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IlugJNg5No-f-RM8x2Am-36" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0.497;exitDx=0;exitDy=0;exitPerimeter=0;strokeWidth=2;" edge="1" parent="1" source="IlugJNg5No-f-RM8x2Am-15" target="IlugJNg5No-f-RM8x2Am-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="210" y="230" as="sourcePoint" />
+            <mxPoint x="260" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IlugJNg5No-f-RM8x2Am-37" value="" style="endArrow=classic;startArrow=none;html=1;rounded=0;exitX=1.032;exitY=0.493;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;startFill=0;strokeWidth=2;dashed=1;" edge="1" parent="1" source="IlugJNg5No-f-RM8x2Am-15" target="IlugJNg5No-f-RM8x2Am-17">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="200" y="250" as="sourcePoint" />
+            <mxPoint x="250" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

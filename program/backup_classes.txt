@@ -1,0 +1,92 @@
+#################
+#  FACTURATION  #
+#  Files.py     #
+#  Gardier S.   #
+#################
+
+### IMPORT ###
+## CSV
+import csv
+
+## Tkinter
+from tkinter.filedialog import askopenfilename
+from tkinter import filedialog
+from tkinter import *
+
+
+### ABSTRACT CLASS FILE ###
+class File:
+    # Creation
+    def __init__(self, master):
+        self.type = "N/A"
+        self.path = "N/A"
+        frame = Frame(master)
+        frame.pack()
+
+        self.folder_path = StringVar()
+        self.lbl1 = Label(master=root,textvariable=folder_path)
+        self.lbl1.grid(row=n, column=1)
+        self.button = Button(text="Browse", command=self.browse_button)
+        self.button.grid(row=n, column=3)
+
+    ## DISPLAY
+    # Display self
+    def display_self(self):
+        print(self.get_type() + " : " + self.get_path())
+
+    # Display rows
+    def display_rows(self):
+        for row in self.reader_object(): 
+            print(row)
+            
+    # Errors
+    # CompareTo( file )
+
+    ## SETTER
+    # Set path
+    def set_path(self, p):
+        self.path = p
+
+    ## GETTER
+    # Get type
+    def get_type(self):
+        return self.type
+        
+    # Get path
+    def get_path(self):
+        return self.path
+
+    # Import
+    def reader_object(self):
+        file_obj = open(call_file_name())
+        reader_obj = csv.reader(file_obj)
+        return reader_obj
+
+    def browse_button():
+        filename = filedialog.askopenfilename(initialdir = "/",
+                                              title = "Select "+self.type,
+                                              filetypes = (("csv files",
+                                                            "*.csv*"),
+                                                           ("all files",
+                                                            "*.*")))
+        self.folder_path.set(filename)
+        self.file.set_path(filename)
+        self.file.display_rows()
+        print(filename)
+
+        
+    # Export
+
+
+### INPUT A : Relevés Alaphamedis ###
+class FileA(File):
+    def __init__(self):
+        super().__init__(self)
+        self.type = "INPUT A"
+
+
+### INPUT B : Retours OT ###
+class FileB(File):
+    def __init__(self):
+        super().__init__(self)
+        self.type = "INPUT B"

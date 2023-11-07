@@ -6,9 +6,14 @@
 
 from gui import Interface
 
-with open("ascii_art.txt", "r") as file:
-    ascii_art = file.read()
-print(ascii_art)
+try:
+    with open("credits.txt", "r") as file:
+        print(file.read())
+except:
+    print("A L P H A M E D I S\n",
+          "Gardier S.",
+          "\n-------------------")
+    
 
 if __name__ == '__main__':
     app = Interface()

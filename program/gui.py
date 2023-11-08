@@ -22,6 +22,7 @@ class Interface(tk.Tk):
         self.geometry("520x450")
         self.resizable(False, False)
         self.cfg = Config()
+        FileT.static_cfg = self.cfg
         self.count = 0
         self.lang = self.cfg.get_language()
         self.display()
@@ -125,17 +126,25 @@ class Interface(tk.Tk):
             print("change translation : {}".format(self.lang))
 
     def compare_files(self):
+        if(self.file_a != None):
+            self.file_a.show_infos()
+        self.formalize_files(TypeA, self.file_a, self.wt_infos_A)
+        self.formalize_files(TypeB, self.file_b, self.wt_infos_B)
         if self.file_a and self.file_b:
             FileT.compare_files(self.file_a, self.file_b)
         else:
-            messagebox.showerror(translations["compare"]["error"]["title"][self.lang], translations["compare"]["error"]["label"][self.lang])
+            self.insert_log("Import\n> Failed - {}\n".format(translations["choose"]["error"]["label"][self.lang]),self.wt_infos_A)
+            self.insert_log("Import\n> Failed - {}\n".format(translations["choose"]["error"]["label"][self.lang]),self.wt_infos_B)
+            if(not self.cfg.get_debug()):
+                messagebox.showerror(translations["compare"]["error"]["title"][self.lang], translations["compare"]["error"]["label"][self.lang])
 
     def formalize_files(self, type_class, file, text_widget):
         if( file != None and file.formalize() ):
-            self.insert_log("Formalize {} : Passed\n".format(type_class),text_widget)
+            self.insert_log("Formalize\n> Succed\n",text_widget)
         else:
-            self.insert_log("Formalize {} : Failed\n".format(type_class),text_widget)
-            messagebox.showerror(translations["formalize"]["error"]["title"][self.lang], translations["formalize"]["error"]["label"][self.lang])
+            self.insert_log("Formalize\n> Failed\n",text_widget)
+            if(not self.cfg.get_debug()):
+                messagebox.showerror(translations["formalize"]["error"]["title"][self.lang], "{} : {}".format(translations["formalize"]["error"]["label"][self.lang],type_class))
 
     def insert_log(self, data, text_widget):
         data += "----------------------------------------------------"
@@ -149,7 +158,9 @@ class Interface(tk.Tk):
             file_path = filedialog.askopenfilename(filetypes=[(translations["choose"]["dialog"]["files"]["csv"][self.lang], "*.csv"), (translations["choose"]["dialog"]["files"]["all"][self.lang], "*.*")])
             if file_path:
                 if not file_path.lower().endswith('.csv'):
-                    messagebox.showerror(translations["choose"]["error"]["title"][self.lang], translations["choose"]["error"]["label"][self.lang])
+                    self.insert_log("Import\n> Failed - {}\n".format(translations["choose"]["error"]["label"][self.lang]),text_widget)
+                    if(not self.cfg.get_debug()):
+                        messagebox.showerror(translations["choose"]["error"]["title"][self.lang], translations["choose"]["error"]["label"][self.lang])
                 else:
                     file_name = os.path.basename(file_path)
                     truncated_path = (file_path[:25] + '...') if len(file_path) > 28 else file_path
@@ -157,7 +168,7 @@ class Interface(tk.Tk):
                     file = type_class(file_path)
                     if(self.cfg.get_debug()):
                         file.show_infos()
-                    self.insert_log(file.read_file_infos(), text_widget)
+                    self.insert_log("Import\n> Succed\n{}".format(file.read_file_infos()),text_widget)
                     if isinstance(file, TypeA):
                         self.file_a = file
                     elif isinstance(file, TypeB):

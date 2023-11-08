@@ -13,6 +13,9 @@ def truncate_float(float_number, decimal_places):
     return int(float_number * multiplier) / multiplier
 
 class FileT:
+
+    static_cfg = None
+    
     def __init__(self, filepath):
         self.filepath = filepath
 
@@ -34,9 +37,9 @@ class FileT:
         file_name = os.path.basename(self.filepath)
         file_stats = os.stat(self.filepath)
         last_modified = datetime.datetime.fromtimestamp(file_stats.st_mtime).strftime('%Y-%m-%d %H:%M:%S')
-        file_size = truncate_float(file_stats.st_size / (1024 * 1024), 2)
+        file_size = truncate_float(file_stats.st_size / (1024 * 1024), 3)
 
-        return "Path : {}\nFile name : {}\nDate last edit : {}\nRows : {}\nSize : {}Mo\n".format(file_path, file_name, last_modified, line_count, file_size)
+        return "Path :\t{}...\nName :\t{}\nDate :\t{}\nRows :\t{}\nSize :\t{}Mo\n".format(file_path[0:40], file_name, last_modified, line_count, file_size)
 
     def read_file_rows(self):
         with open(self.filepath, 'r') as file:
@@ -60,16 +63,15 @@ class TypeA(FileT):
     def __init__(self, filename):
         super().__init__(filename)
         self.type = "TypeA"
-
-        def formalize(self):
-            print("Formalize TypeA")
+        
+    def formalize(self):
+        state = False
+        print("Formalize TypeA")
+        try:
             state = False
-            try:
-                state = True
-            except:
-                state = False
-            return state
-
+        except:
+            state = False
+        return state
 
     def show_infos(self):
         print("TYPE A\n",self.filepath)
@@ -79,14 +81,26 @@ class TypeB(FileT):
         super().__init__(filename)
         self.type = "TypeB"
 
-        def formalize(self):
-            state = False
+    def formalize(self):
+        state = False
+        if(FileT.static_cfg.get_debug()):
             print("Formalize TypeB")
-            try:
-                state = True
-            except:
-                state = False
-            return state
+        try:
+            file = self.read_file_rows()
+            table_file = []
+            table_treatment = []
+            split = ";"
+            for row in file:
+                row_temp = row.split(split)
+                print(row_temp[0])
+                if(isinstance(row_temp[0], int)): # /!\ isinstance() retourne faux systématiquement
+                    table_file.append(row_temp)
+                    print(row_temp)
+            print("table: \n",table_file)
+            state = True
+        except:
+            state = False
+        return state
 
     def show_infos(self):
         print("TYPE B\n", self.filepath)

@@ -1,0 +1,36 @@
+###					      ###
+#	Pseudo code formalisation Type B	#
+#	Gardier S.				#
+###					      ###
+
+Lignes 1 à 2	: N° Bandagiste Interne
+Lignes 3 à 13	: N° Mutuelle(j0) - Date(j5) - Niss(j3) - Montant(j7)
+Lignes 13 à 14	: none
+
+1. Variables
+	Fichier
+	LigneTemp
+	MatriceFichier
+	MatriceTraitement
+
+2. Rassembler les lignes similaires
+	Pour chaque ligne, en commencant par la ligne 3 (index 2)
+		Si ligne ne commence pas par le N°Mutuelle
+			Continue
+		Ligne dans LigneTemp
+		Resultat VerifierLigne(LigneTemp) dans IndexLigne
+		Si Verifier(VariableVerificationLigne > -1)
+			Cumuler ligneTemp[montant] à MatriceTraitement[indexLigne]
+		Sinon
+			ajouter LigneTemp à MatriceTraitement
+			
+	Fonction VerifierLigne(LigneTemp)
+		indexRetour égale -1
+		i égale 0
+		
+		pour i allant jusqu'à la taille de MatriceTraitement -1 par pas de 1
+			si ligneTemp[NISS] && ligneTemp[DATE] exist dans matriceTraitement[i]
+				indexRetour = i
+
+3. Creer le fichier CSV
+	

@@ -92,15 +92,26 @@ class TypeB(FileT):
             split = ";"
             for row in file:
                 row_temp = row.split(split)
-                print(row_temp[0])
-                if(isinstance(row_temp[0], int)): # /!\ isinstance() retourne faux systématiquement
-                    table_file.append(row_temp)
-                    print(row_temp)
-            print("table: \n",table_file)
+                try:
+                    int(row_temp[0])
+                    new_row = []
+                    new_row.append(row_temp[0])
+                    new_row.append(row_temp[5])
+                    new_row.append(row_temp[3])
+                    new_row.append(row_temp[7])
+                    table_file.append(new_row)
+                except:
+                    error = 1
+            print("table: \n")
+            self.show_matrix(table_file)
             state = True
         except:
             state = False
         return state
 
+    def show_matrix(self, matrix):
+        for row in matrix :
+            print(row)
+    
     def show_infos(self):
         print("TYPE B\n", self.filepath)

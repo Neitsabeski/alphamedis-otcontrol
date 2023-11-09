@@ -126,25 +126,26 @@ class Interface(tk.Tk):
             print("change translation : {}".format(self.lang))
 
     def compare_files(self):
-        if(self.file_a != None):
-            self.file_a.show_infos()
-        self.formalize_files(TypeA, self.file_a, self.wt_infos_A)
-        self.formalize_files(TypeB, self.file_b, self.wt_infos_B)
-        if self.file_a and self.file_b:
+        s_a = self.formalize_files(TypeA, self.file_a, self.wt_infos_A)
+        s_b = self.formalize_files(TypeB, self.file_b, self.wt_infos_B)
+        if( s_a and s_b ):
             FileT.compare_files(self.file_a, self.file_b)
         else:
-            self.insert_log("Import\n> Failed - {}\n".format(translations["choose"]["error"]["label"][self.lang]),self.wt_infos_A)
-            self.insert_log("Import\n> Failed - {}\n".format(translations["choose"]["error"]["label"][self.lang]),self.wt_infos_B)
+            self.insert_log("Compare\n> Failed - {}\n".format(translations["compare"]["error"]["label"][self.lang]),self.wt_infos_A)
+            self.insert_log("Compare\n> Failed - {}\n".format(translations["compare"]["error"]["label"][self.lang]),self.wt_infos_B)
             if(not self.cfg.get_debug()):
                 messagebox.showerror(translations["compare"]["error"]["title"][self.lang], translations["compare"]["error"]["label"][self.lang])
 
     def formalize_files(self, type_class, file, text_widget):
+        state = False
         if( file != None and file.formalize() ):
             self.insert_log("Formalize\n> Succed\n",text_widget)
+            state = True
         else:
             self.insert_log("Formalize\n> Failed\n",text_widget)
             if(not self.cfg.get_debug()):
                 messagebox.showerror(translations["formalize"]["error"]["title"][self.lang], "{} : {}".format(translations["formalize"]["error"]["label"][self.lang],type_class))
+        return state
 
     def insert_log(self, data, text_widget):
         data += "----------------------------------------------------"

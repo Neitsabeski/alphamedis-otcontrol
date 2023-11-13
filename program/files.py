@@ -6,7 +6,6 @@
 
 import os
 import datetime
-import pandas as pd
 
 def truncate_float(float_number, decimal_places):
     multiplier = 10 ** decimal_places
@@ -99,10 +98,12 @@ class TypeB(FileT):
                     new_row.append(row_temp[5])
                     new_row.append(row_temp[3])
                     new_row.append(row_temp[7])
-                    table_file.append(new_row)
+                    if(new_row not in table_file):
+                        table_file.append(new_row)
                 except:
                     error = 1
-            print("table: \n")
+            
+            print("\nTable:")
             self.show_matrix(table_file)
             state = True
         except:

@@ -2,13 +2,13 @@
 > PROJECT : Office Tarification Control
 
 ## README
-- [ ] Create MD readme to project
+- [x] Create MD readme to project
 
 ## MAIN
 ### Credits
 - [x] Import read and display Credits
 - [ ] Function to draw credits
-- [ ] If not exist, create credits 
+- [ ] If not exist, create credits
 
 ## CONFIG
 - [x] Config class
@@ -21,6 +21,7 @@
 
 ## GUI
 - [x] Create a window interface
+- [ ] Translation of logs
 - [x] section
 - - [x] Label
 - - [x] Path
@@ -39,6 +40,7 @@
 
 ## TRANSLATION
 - [x] Add translations file
+- [ ] Translation of logs
 - [ ] Convert file format
     `translation.py -> translation.json`
 - [ ] Create class translation
@@ -72,7 +74,7 @@
 - [x] Create class
 - [x] Show infos
 - [x] Formalise
-- - [ ] row in matrix() 
+- - [x] row in matrix()
 - - [ ] FOR ROW : If cell is empty, continue
 - [x] Static method compare files
 - [ ] Add respond to functions
@@ -86,3 +88,8 @@
 
 ### CLASS FILEB
 - [X] Formalise function
+
+
+# QUESTIONS
+
+## 

@@ -12,23 +12,7 @@ class Config():
         self.treatment = 0
         self.debug = False
         self.load_config()
-
-    def get_language(self):
-        return self.language
-
-    def change_language(self):
-        if (self.language == "en"):
-            self.language = "fr"
-        else:
-            self.language = "en"
-        self.new_config()
-
-    def get_debug(self):
-        return self.debug
-
-    def get_treatment(self):
-        return self.treatment
-
+    
     def load_config(self):
         try:
             with open('config.json', 'r') as cfg:
@@ -46,9 +30,24 @@ class Config():
             "number_of_treatment": self.treatment,
             "debug": self.debug
         }
-
         json_object = json.dumps(new_cfg, indent=3)
-
         with open("config.json", "w") as outfile:
             outfile.write(json_object)
         
+    def change_language(self):
+        if (self.language == "en"):
+            self.language = "fr"
+        else:
+            self.language = "en"
+        self.new_config()
+    def get_language(self):
+        self.load_config()
+        return self.language
+
+    def get_debug(self):
+        self.load_config()
+        return self.debug
+
+    def get_treatment(self):
+        self.load_config()
+        return self.treatment

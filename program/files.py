@@ -38,11 +38,16 @@ class FileT:
         last_modified = datetime.datetime.fromtimestamp(file_stats.st_mtime).strftime('%Y-%m-%d %H:%M:%S')
         file_size = truncate_float(file_stats.st_size / (1024 * 1024), 3)
 
-        return "Path :\t{}...\nName :\t{}\nDate :\t{}\nRows :\t{}\nSize :\t{}Mo\n".format(file_path[0:40], file_name, last_modified, line_count, file_size)
+        return "Path :\t{}...\nName :\t{}\nDate :\t{}\nRows :\t{}\nSize :\t{}Mo".format(file_path[0:40], file_name, last_modified, line_count, file_size)
 
     def read_file_rows(self):
-        with open(self.filepath, 'r') as file:
-            lines = file.readlines()
+        lines = []
+        try:
+            with open(self.filepath, 'r') as file:
+                lines = file.readlines()
+        except:
+            if(static_cfg.get_debug()):
+                print("Error read lines")
         return lines
 
     
@@ -102,9 +107,9 @@ class TypeB(FileT):
                         table_file.append(new_row)
                 except:
                     error = 1
-            
-            print("\nTable:")
-            self.show_matrix(table_file)
+            if(FileT.static_cfg.get_debug()):
+                print("\nTable:")
+                self.show_matrix(table_file)
             state = True
         except:
             state = False

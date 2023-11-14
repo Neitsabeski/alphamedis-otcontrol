@@ -11,6 +11,7 @@ from files import FileT, TypeA, TypeB
 from tools import *
 from translations import *
 from config import *
+import datetime
 
 
 class Interface(tk.Tk):
@@ -131,26 +132,29 @@ class Interface(tk.Tk):
         if( s_a and s_b ):
             FileT.compare_files(self.file_a, self.file_b)
         else:
-            self.insert_log("Compare\n> Failed - {}\n".format(translations["compare"]["error"]["label"][self.lang]),self.wt_infos_A)
-            self.insert_log("Compare\n> Failed - {}\n".format(translations["compare"]["error"]["label"][self.lang]),self.wt_infos_B)
+            self.insert_log("Compare > Failed - {}".format(translations["compare"]["error"]["label"][self.lang]),self.wt_infos_A)
+            self.insert_log("Compare > Failed - {}".format(translations["compare"]["error"]["label"][self.lang]),self.wt_infos_B)
             if(not self.cfg.get_debug()):
                 messagebox.showerror(translations["compare"]["error"]["title"][self.lang], translations["compare"]["error"]["label"][self.lang])
 
     def formalize_files(self, type_class, file, text_widget):
         state = False
         if( file != None and file.formalize() ):
-            self.insert_log("Formalize\n> Succed\n",text_widget)
+            self.insert_log("Formalize\n> Succed",text_widget)
             state = True
         else:
-            self.insert_log("Formalize\n> Failed\n",text_widget)
+            self.insert_log("Formalize\n> Failed",text_widget)
             if(not self.cfg.get_debug()):
                 messagebox.showerror(translations["formalize"]["error"]["title"][self.lang], "{} : {}".format(translations["formalize"]["error"]["label"][self.lang],type_class))
         return state
 
     def insert_log(self, data, text_widget):
-        data += "----------------------------------------------------"
+        now = datetime.datetime.now()
+        time = "{}:{}:{}".format(now.hour, now.minute, now.second)
+        break_line= "----------------------------------------------------"
+        text_display = "{}\n{}\n{}".format(time, data, break_line)
         text_widget.configure(state='normal')
-        text_widget.insert(tk.END, data)
+        text_widget.insert(tk.END, text_display)
         text_widget.configure(state='disable')
         text_widget.see(tk.END)
 
@@ -159,7 +163,7 @@ class Interface(tk.Tk):
             file_path = filedialog.askopenfilename(filetypes=[(translations["choose"]["dialog"]["files"]["csv"][self.lang], "*.csv"), (translations["choose"]["dialog"]["files"]["all"][self.lang], "*.*")])
             if file_path:
                 if not file_path.lower().endswith('.csv'):
-                    self.insert_log("Import\n> Failed - {}\n".format(translations["choose"]["error"]["label"][self.lang]),text_widget)
+                    self.insert_log("Import\n> Failed - {}".format(translations["choose"]["error"]["label"][self.lang]),text_widget)
                     if(not self.cfg.get_debug()):
                         messagebox.showerror(translations["choose"]["error"]["title"][self.lang], translations["choose"]["error"]["label"][self.lang])
                 else:

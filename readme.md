@@ -87,7 +87,6 @@ This utility is able to
 * [IDLE](https://portablepython.com/)
     * [Portable Python 3.10.5](https://sourceforge.net/projects/portable-python/files/Portable%20Python%203.10/)
     * [Portable Python 3.2.5](https://portablepython.com/) Dev version
-* [ChatGPT](https://chat.openai.com/) Dev Assistant
 * [Draw.io](https://app.diagrams.net/) Analysis diagrams
 
 ### Features
@@ -151,3 +150,33 @@ Project : https://github.com/Neitsabeski/alphamedis-otcontrol/
 
 ## Credits
 
+### Provider
+* [Alphamedis](https://alphamedis.be/) Provider
+
+### Dev
+* [Gardier Sebastien](https://github.com/Neitsabeski/alphamedis-otcontrol) Developer
+
+### Tools
+* [Github](https://github.com/Neitsabeski/alphamedis-otcontrol/) Project Repository
+* [IDLE](https://portablepython.com/)
+    * [Portable Python 3.10.5](https://sourceforge.net/projects/portable-python/files/Portable%20Python%203.10/)
+    * [Portable Python 3.2.5](https://portablepython.com/) Dev version
+* [ChatGPT](https://chat.openai.com/) Dev Assistant
+* [Draw.io](https://app.diagrams.net/) Analysis diagrams
+* [Image to Ascii](https://www.asciiart.eu/image-to-ascii)
+* [Text to Ascii](https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20)
+
+### Doc
+* [Python](https://docs.python.org/3/) Dev language
+    * [Tkinter](https://docs.python.org/3/library/tkinter.html) 
+        Display Window and widgets
+    * CSV
+        Read lines file
+    * [OS](https://docs.python.org/3/library/os.html)
+        Path files
+    * [Date time](https://docs.python.org/3/library/datetime.html)
+        Operation Logs and Date time structure
+* [CSV](https://support.microsoft.com/en-us/office/import-or-export-text-txt-or-csv-files-5250ac4c-663c-47ce-937b-339e391393ba)
+    Microsoft Excel (inputs)
+* [Batch](https://www.tutorialspoint.com/batch_script/index.html)
+    (Launcher)

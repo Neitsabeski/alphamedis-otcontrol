@@ -19,7 +19,7 @@
 5. [Execution](#execution)
 6. [Credits](#credits)
 
-## 1. General Info
+## General Info
 
 ### Presentation
 
@@ -34,7 +34,7 @@ This utility is able to
 - compare both content
 - export result file
 
-## 2. Technologies
+## Technologies
 
 ### Utility
 
@@ -101,7 +101,7 @@ This utility is able to
 * Config controler
 * Changing translation
 
-## 3. Installation
+## Installation
 
 * [Project](https://github.com/Neitsabeski/alphamedis-otcontrol/)
 * [Portable Python 3](https://portablepython.com/3.2.5.1/)
@@ -112,7 +112,7 @@ This utility is able to
 * Config file
 
 
-## 4. Project
+## Project
 
 ### Repository
 
@@ -142,7 +142,7 @@ Project : https://github.com/Neitsabeski/alphamedis-otcontrol/
 ```
 
 
-## 5. Execution
+## Execution
 
 1. Prepare input files
 2. Settings /optional `"debug": true`
@@ -151,5 +151,5 @@ Project : https://github.com/Neitsabeski/alphamedis-otcontrol/
     2. AutoRun
 4. Use Utility
 
-## 6. Credits
+## Credits
 

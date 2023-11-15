@@ -103,13 +103,11 @@ This utility is able to
 
 ## Installation
 
-* [Project](https://github.com/Neitsabeski/alphamedis-otcontrol/)
+* [Project repository](https://github.com/Neitsabeski/alphamedis-otcontrol/)
 * [Portable Python 3](https://portablepython.com/3.2.5.1/)
     ```
-    /!\ Version 3.2.5.1, newest version is dowloadable (3.10.5)
+    /!\ Project version is 3.2.5.1, lastest version is 3.10.5
     ```
-* [CSV](https://support.microsoft.com/en-us/office/import-or-export-text-txt-or-csv-files-5250ac4c-663c-47ce-937b-339e391393ba)
-* Config file
 
 
 ## Project
@@ -144,11 +142,11 @@ Project : https://github.com/Neitsabeski/alphamedis-otcontrol/
 
 ## Execution
 
-1. Prepare input files
+1. Prepare input [CSV](https://support.microsoft.com/en-us/office/import-or-export-text-txt-or-csv-files-5250ac4c-663c-47ce-937b-339e391393ba) files `file.xls -> file.csv`
 2. Settings /optional `"debug": true`
 3. Launch utility (i or ii)
-    1. Portable Python IDLE
-    2. AutoRun
+    1. Portable Python IDLE `main.py`
+    2. AutoRun `shortcut`
 4. Use Utility
 
 ## Credits

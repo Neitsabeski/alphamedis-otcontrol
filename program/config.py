@@ -12,6 +12,8 @@ class Config():
         self.treatment = 0
         self.debug = False
         self.load_config()
+
+    ## Import or Create config file
     
     def load_config(self):
         try:
@@ -33,13 +35,19 @@ class Config():
         json_object = json.dumps(new_cfg, indent=3)
         with open("config.json", "w") as outfile:
             outfile.write(json_object)
-        
+
+    ## Setter
+    
     def change_language(self):
         if (self.language == "en"):
             self.language = "fr"
         else:
             self.language = "en"
         self.new_config()
+
+
+    ## Getter
+        
     def get_language(self):
         self.load_config()
         return self.language

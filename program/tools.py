@@ -6,6 +6,21 @@
 
 from tkinter import *
 
+class Tools():
+
+    @staticmethod
+    def truncate_float(float_number, decimal_places):
+        multiplier = 10 ** decimal_places
+        return int(float_number * multiplier) / multiplier
+
+    @staticmethod
+    def isnumeric(var):
+        try:
+            float(var)
+            return True
+        except:
+            return False
+
 class ToolTip(object):
 
     def __init__(self, widget):
@@ -43,3 +58,5 @@ def CreateToolTip(widget, text):
         toolTip.hidetip()
     widget.bind('<Enter>', enter)
     widget.bind('<Leave>', leave)
+
+

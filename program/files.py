@@ -6,50 +6,121 @@
 
 import os
 import datetime
-
-def truncate_float(float_number, decimal_places):
-    multiplier = 10 ** decimal_places
-    return int(float_number * multiplier) / multiplier
+from response import Response
+from config import Config
+from tools import Tools
 
 class FileT:
 
-    static_cfg = None
+    static_cfg = Config()
     
-    def __init__(self, filepath):
-        self.filepath = filepath
+    def __init__(self):
+        self.filepath = None
+        self.type = "TypeT"
 
-    def formalize(self):
-        print("Formalize T")
+    ## Getter & Setter
 
     def get_type(self):
         return(self.type)
 
-    def show_infos():
-        print("N/A")
+    def get_filepath(self):
+        return self.filepath
+
+    def set_filepath(self, path):
+        self.filepath = path
+
+    def set_type(self, t):
+        self.type = t
+
+    ## Display infos in console
+
+    def show_matrix(self, matrix):
+        for row in matrix :
+            print(row)
+
+    def show_infos(self):
+        print("File \n- Type : {}\n- Path :'{}'".format(self.type, self.filepath))
+
+    ## Reading file
 
     def read_file_infos(self):
-        with open(self.filepath, 'r') as file:
-            lines = file.readlines()
-            line_count = len(lines)
-
-        file_path = self.filepath        
-        file_name = os.path.basename(self.filepath)
-        file_stats = os.stat(self.filepath)
-        last_modified = datetime.datetime.fromtimestamp(file_stats.st_mtime).strftime('%Y-%m-%d %H:%M:%S')
-        file_size = truncate_float(file_stats.st_size / (1024 * 1024), 3)
-
-        return "Path :\t{}...\nName :\t{}\nDate :\t{}\nRows :\t{}\nSize :\t{}Mo".format(file_path[0:40], file_name, last_modified, line_count, file_size)
-
-    def read_file_rows(self):
-        lines = []
+        res = Response()
+        if(self.get_filepath() == None):
+            res.set_response(False, "No file path", None)
+            return res
         try:
-            with open(self.filepath, 'r') as file:
+            with open(self.get_filepath(), 'r') as file:
                 lines = file.readlines()
+                line_count = len(lines)
+            file_path = self.filepath        
+            file_name = os.path.basename(self.filepath)
+            file_stats = os.stat(self.filepath)
+            last_modified = datetime.datetime.fromtimestamp(file_stats.st_mtime).strftime('%Y-%m-%d %H:%M:%S')
+            file_size = Tools.truncate_float(file_stats.st_size / (1024 * 1024), 3)
+            res.set_response(True, "Path :\t{}...\nName :\t{}\nDate :\t{}\nRows :\t{}\nSize :\t{}Mo".format(file_path[0:40], file_name, last_modified, line_count, file_size), None)
         except:
-            if(static_cfg.get_debug()):
-                print("Error read lines")
-        return lines
+            res.set_response(False, "Error Read file infos", None)
+        return res
+    
+    def read_file_rows(self):
+        res = Response()
+        if(self.get_filepath() == None):
+            res.set_response(False, "No file path", None)
+            return res
+        try:
+            lines = []
+            with open(self.get_filepath(), 'r') as file:
+                lines = file.readlines()
+                res.set_response(True, "Read file rows : {}".format(len(lines)), lines)
+        except:
+            res.set_response(False, "Error Read file rows", None)
+            if(self.static_cfg.get_debug()):
+                print(res.get_message())
+        return res
 
+    ## Files operation
+
+    @staticmethod
+    def extract_content(args, res):
+        try:
+            file = res.get_data()
+            table_file = []
+            split = ";"
+            for row in file:
+                row_temp = row.split(split)
+
+                # requires numeric
+                gen = (e for e in args if e[1])
+                state = False
+                for e in gen:
+                    if(Tools.isnumeric(row_temp[e[0]])):
+                        state = True
+                
+                '''
+                # requires not null
+                if(row_temp[0] == "" or row_temp[5] == "" or row_temp[3] == "" or row_temp[7] == "" ):
+                    continue
+                '''
+                
+                if(state):
+                    new_row = []
+
+                    for e in args:
+                        new_row.append(row_temp[e[0]])
+
+                    if(new_row not in table_file):
+                        table_file.append(new_row)
+
+            if(FileT.static_cfg.get_debug()):
+                print("\nTable:")
+                for row in table_file :
+                    print(row)
+            nb_row = len(table_file)
+            res.set_response(True, "Rows kept : {}".format(nb_row), table_file)
+        except:
+            res.set_response(False, "Error Formalizing", None)
+        return res
+        
     
     @staticmethod
     def compare_files(file_a, file_b):
@@ -64,60 +135,70 @@ class FileT:
 
 
 class TypeA(FileT):
-    def __init__(self, filename):
-        super().__init__(filename)
-        self.type = "TypeA"
+    def __init__(self):
+        super().__init__()
+        self.set_type("TypeA")
         
     def formalize(self):
-        state = False
+        res = Response()
         print("Formalize TypeA")
         try:
-            state = False
+            res.set_message("Success formalising")
         except:
-            state = False
-        return state
-
-    def show_infos(self):
-        print("TYPE A\n",self.filepath)
+            res.set_message("Error formalising")
+        return res
 
 class TypeB(FileT):
-    def __init__(self, filename):
-        super().__init__(filename)
-        self.type = "TypeB"
+    def __init__(self):
+        super().__init__()
+        self.set_type("TypeB")
+
 
     def formalize(self):
-        state = False
         if(FileT.static_cfg.get_debug()):
             print("Formalize TypeB")
+        res = self.read_file_rows()
+        if(res.get_state() == False):
+            return res
+        args = [
+            [0,True],
+            [5,False],
+            [3,False],
+            [7,False]]
+        return FileT.extract_content(args, res)
+        
+
+    '''
+    def formalize(self):
+        if(FileT.static_cfg.get_debug()):
+            print("Formalize TypeB")
+        res = self.read_file_rows()
+        if(res.get_state() == False):
+            return res
         try:
-            file = self.read_file_rows()
+            file = res.get_data()
             table_file = []
-            table_treatment = []
             split = ";"
             for row in file:
                 row_temp = row.split(split)
-                try:
-                    int(row_temp[0])
-                    new_row = []
-                    new_row.append(row_temp[0])
-                    new_row.append(row_temp[5])
-                    new_row.append(row_temp[3])
-                    new_row.append(row_temp[7])
-                    if(new_row not in table_file):
-                        table_file.append(new_row)
-                except:
-                    error = 1
+                if(not Tools.isnumeric(row_temp[0])):
+                    continue
+                if(row_temp[0] == "" or row_temp[5] == "" or row_temp[3] == "" or row_temp[7] == "" ):
+                    continue
+                int(row_temp[0])
+                new_row = []
+                new_row.append(row_temp[0])
+                new_row.append(row_temp[5])
+                new_row.append(row_temp[3])
+                new_row.append(row_temp[7])
+                if(new_row not in table_file):
+                    table_file.append(new_row)
             if(FileT.static_cfg.get_debug()):
                 print("\nTable:")
                 self.show_matrix(table_file)
-            state = True
+            nb_row = len(table_file)
+            res.set_response(True, "Rows kept : {}".format(nb_row), table_file)
         except:
-            state = False
-        return state
-
-    def show_matrix(self, matrix):
-        for row in matrix :
-            print(row)
-    
-    def show_infos(self):
-        print("TYPE B\n", self.filepath)
+            res.set_message("Error formalising")
+        return res
+    '''

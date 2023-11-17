@@ -15,6 +15,32 @@ from files import FileT, TypeA, TypeB
 def print_line():
     print("\n----------------------------------\n")
 
+## Empty liste
+def empty_liste():
+    liste = [
+    ["1", "2", "3"],
+    ["3.5","deux",""],
+    ["quatre", "5", "6"],
+    ["7", "huit", "9"],
+    ]
+
+    args = [
+        [0, True],
+        [1, False],
+        [2, False],
+    ]
+
+    table_file = []
+
+    for row in liste:
+        state = all(row[e[0]].replace(".", "").isdigit() if e[1] else True for e in args) and not any(e == "" for e in row)
+        if state:
+            new_row = [row[e[0]] for e in args]
+            if new_row not in table_file:
+                table_file.append(new_row)
+
+    print(table_file)
+
 ## Generic
 def function(args, data):
     dialog = ["is numeric","is not numeric"]
@@ -113,7 +139,8 @@ def formalize_response():
 
 print("-- Main --\n- Tests  -\n")
 
-generic()
+empty_liste()
+#generic()
 #numeric()
 #files()
 #formalize_response()

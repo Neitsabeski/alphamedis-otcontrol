@@ -6,9 +6,11 @@
 
 import os
 import datetime
+import pandas as pd
 from response import Response
 from config import Config
 from tools import Tools
+
 
 class FileT:
 
@@ -78,50 +80,37 @@ class FileT:
                 print(res.get_message())
         return res
 
-    ## Files operation
-
+    @staticmethod
+    def row_control(args, row):
+        res = Response()
+        new_row = []
+        split = ";"
+        try:
+            row_temp = row.split(split)
+            new_row = [row_temp[e[0]] for e in args if Tools.isnumeric(row_temp[e[0]]) == e[1] and row_temp[e[0]] != "" ]
+            if(len(new_row) == len(args)):
+                res.set_response(True, "Success no way", new_row)
+        except Exception as error:
+            print("Error")
+        return res
+    
     @staticmethod
     def extract_content(args, res):
-        try:
-            file = res.get_data()
-            table_file = []
-            split = ";"
-            for row in file:
-                row_temp = row.split(split)
-
-                # requires numeric
-                gen = (e for e in args if e[1])
-                state = False
-                for e in gen:
-                    if(Tools.isnumeric(row_temp[e[0]])):
-                        state = True
-                
-                '''
-                # requires not null
-                if(row_temp[0] == "" or row_temp[5] == "" or row_temp[3] == "" or row_temp[7] == "" ):
-                    continue
-                '''
-                
-                if(state):
-                    new_row = []
-
-                    for e in args:
-                        new_row.append(row_temp[e[0]])
-
-                    if(new_row not in table_file):
-                        table_file.append(new_row)
-
-            if(FileT.static_cfg.get_debug()):
-                print("\nTable:")
-                for row in table_file :
-                    print(row)
-            nb_row = len(table_file)
-            res.set_response(True, "Rows kept : {}".format(nb_row), table_file)
-        except:
-            res.set_response(False, "Error Formalizing", None)
+        file = res.get_data()
+        table_file = []
+        for row in file:
+            res_row = FileT.row_control(args, row)
+            new_row = res_row.get_data()
+            if(res_row.get_state()):
+                table_file.append(new_row)
+        if(FileT.static_cfg.get_debug()):
+            print("\nTable:")
+            for row in table_file :
+                print(row)
+        nb_row = len(table_file)
+        res.set_response(True, "Rows kept : {}".format(nb_row), table_file)
         return res
         
-    
     @staticmethod
     def compare_files(file_a, file_b):
         if isinstance(file_a, TypeA) and isinstance(file_b, TypeB):
@@ -140,13 +129,17 @@ class TypeA(FileT):
         self.set_type("TypeA")
         
     def formalize(self):
-        res = Response()
-        print("Formalize TypeA")
-        try:
-            res.set_message("Success formalising")
-        except:
-            res.set_message("Error formalising")
-        return res
+        if(FileT.static_cfg.get_debug()):
+            print("Formalize TypeA")
+        res = self.read_file_rows()
+        if(res.get_state() == False):
+            return res
+        args = [
+            [0,True],
+            [5,False],
+            [3,False],
+            [7,False]]
+        return FileT.extract_content(args, res)
 
 class TypeB(FileT):
     def __init__(self):
@@ -165,40 +158,19 @@ class TypeB(FileT):
             [5,False],
             [3,False],
             [7,False]]
-        return FileT.extract_content(args, res)
-        
+        res = FileT.extract_content(args, res)
 
-    '''
-    def formalize(self):
+        df = pd.DataFrame(res.get_data(),columns=['mut', 'date', 'niss', 'cout'])
+        df['cout'] = df['cout'].str.replace(',','.')
+        df['cout'] = df['cout'].astype(str).astype(float) 
+        df2 = df.groupby(['date','mut','niss'],as_index=False).agg({'cout': 'sum'})
+
         if(FileT.static_cfg.get_debug()):
-            print("Formalize TypeB")
-        res = self.read_file_rows()
-        if(res.get_state() == False):
-            return res
-        try:
-            file = res.get_data()
-            table_file = []
-            split = ";"
-            for row in file:
-                row_temp = row.split(split)
-                if(not Tools.isnumeric(row_temp[0])):
-                    continue
-                if(row_temp[0] == "" or row_temp[5] == "" or row_temp[3] == "" or row_temp[7] == "" ):
-                    continue
-                int(row_temp[0])
-                new_row = []
-                new_row.append(row_temp[0])
-                new_row.append(row_temp[5])
-                new_row.append(row_temp[3])
-                new_row.append(row_temp[7])
-                if(new_row not in table_file):
-                    table_file.append(new_row)
-            if(FileT.static_cfg.get_debug()):
-                print("\nTable:")
-                self.show_matrix(table_file)
-            nb_row = len(table_file)
-            res.set_response(True, "Rows kept : {}".format(nb_row), table_file)
-        except:
-            res.set_message("Error formalising")
+            print(df)
+            print(df2)
+                
         return res
-    '''
+
+    def row_inside():
+        res = Response()
+        return res

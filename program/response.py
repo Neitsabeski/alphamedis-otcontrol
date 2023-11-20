@@ -38,3 +38,8 @@ class Response:
         self.state = s
         self.message = m
         self.data = d
+
+    # Show
+
+    def show_infos(self):
+        print("Response : {}\n----------------------------\n- State : {}\n- Message : {}\n- Data Rows : {}".format(self, self.get_state(), self.get_message(), len(self.get_data())))

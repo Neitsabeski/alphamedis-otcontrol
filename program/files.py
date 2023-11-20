@@ -36,12 +36,15 @@ class FileT:
 
     ## Display infos in console
 
-    def show_matrix(self, matrix):
+    @staticmethod
+    def show_matrix(matrix):
         for row in matrix :
             print(row)
 
     def show_infos(self):
-        print("File \n- Type : {}\n- Path :'{}'".format(self.type, self.filepath))
+        if(FileT.static_cfg.get_debug()):
+            print("Import File")
+        print("File : {}\n----------------------------\n- Type : {}\n- Path :'{}'\n".format(self, self.type, self.filepath))
 
     ## Reading file
 
@@ -103,14 +106,27 @@ class FileT:
             new_row = res_row.get_data()
             if(res_row.get_state()):
                 table_file.append(new_row)
-        if(FileT.static_cfg.get_debug()):
-            print("\nTable:")
-            for row in table_file :
-                print(row)
         nb_row = len(table_file)
+        if(FileT.static_cfg.get_debug()):
+            print("- Rows kept : {}\n".format(nb_row))
+            FileT.show_matrix(table_file)
+            print("\n")
         res.set_response(True, "Rows kept : {}".format(nb_row), table_file)
         return res
+
+    '''
+    @staticmethod
+    def table_to_pandas(table):
+    ''' 
         
+    @staticmethod
+    def pandas_read_file(path):
+        # Read the CSV file
+        data = pd.read_csv(path, encoding = 'unicode')
+
+        # View the first 5 rows
+        data.head()
+    
     @staticmethod
     def compare_files(file_a, file_b):
         if isinstance(file_a, TypeA) and isinstance(file_b, TypeB):
@@ -129,17 +145,16 @@ class TypeA(FileT):
         self.set_type("TypeA")
         
     def formalize(self):
+        res = self.read_file_rows()
         if(FileT.static_cfg.get_debug()):
             print("Formalize TypeA")
-        res = self.read_file_rows()
+            res.show_infos()
         if(res.get_state() == False):
             return res
-        args = [
-            [0,True],
-            [5,False],
-            [3,False],
-            [7,False]]
-        return FileT.extract_content(args, res)
+
+        FileT.pandas_read_file(self.filepath)
+        
+        return res
 
 class TypeB(FileT):
     def __init__(self):
@@ -148,9 +163,10 @@ class TypeB(FileT):
 
 
     def formalize(self):
+        res = self.read_file_rows()
         if(FileT.static_cfg.get_debug()):
             print("Formalize TypeB")
-        res = self.read_file_rows()
+            res.show_infos()
         if(res.get_state() == False):
             return res
         args = [
@@ -166,9 +182,11 @@ class TypeB(FileT):
         df2 = df.groupby(['date','mut','niss'],as_index=False).agg({'cout': 'sum'})
 
         if(FileT.static_cfg.get_debug()):
-            print(df)
-            print(df2)
-                
+            print("- Pandas Rows kept  : \n{}\n".format(df))
+            print("- Pandas Rows merge : \n{}\n".format(df2))
+
+        res.set_message(res.get_message() + "\nRows kept with merge : {}".format(len(df2)))
+        
         return res
 
     def row_inside():
